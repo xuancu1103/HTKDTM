@@ -1,0 +1,89 @@
+{
+    "questions": [
+      {
+        "id": 1,
+        "category": "Seasonal Fruits",
+        "question": "Mùa xuân có những loại hoa quả gì?",
+        "answer": "Mùa xuân có các loại hoa quả như dâu tây, xoài, thanh long, bưởi và cam."
+      },
+      {
+        "id": 2,
+        "category": "Seasonal Fruits",
+        "question": "Mùa hè có những loại hoa quả gì?",
+        "answer": "Mùa hè thường có nhiều loại hoa quả như vải, nhãn, chôm chôm, dưa hấu, xoài, và mít."
+      },
+      {
+        "id": 3,
+        "category": "Seasonal Fruits",
+        "question": "Mùa thu có những loại hoa quả gì?",
+        "answer": "Mùa thu có các loại hoa quả như hồng, bưởi, nho, táo và lựu."
+      },
+      {
+        "id": 4,
+        "category": "Seasonal Fruits",
+        "question": "Mùa đông có những loại hoa quả gì?",
+        "answer": "Mùa đông có các loại hoa quả như cam, quýt, bưởi, chuối, và dứa."
+      },
+      {
+        "id": 5,
+        "category": "Seasonal Vegetables",
+        "question": "Mùa hè nên trồng rau gì?",
+        "answer": "Mùa hè bạn có thể trồng các loại rau như rau muống, mướp, bí xanh, dưa chuột và cải ngọt."
+      },
+      {
+        "id": 6,
+        "category": "Seasonal Vegetables",
+        "question": "Mùa đông nên trồng rau gì?",
+        "answer": "Mùa đông thích hợp để trồng các loại rau như cải bắp, súp lơ, cải xoăn, cà rốt và hành tây."
+      },
+      {
+        "id": 7,
+        "category": "Seasonal Planting",
+        "question": "Mùa nào trồng lúa?",
+        "answer": "Lúa thường được trồng vào vụ xuân và vụ hè. Mùa xuân từ tháng 1 đến tháng 5, và mùa hè từ tháng 6 đến tháng 10."
+      },
+      {
+        "id": 8,
+        "category": "Seasonal Planting",
+        "question": "Tôi muốn mua thịt?",
+        "answer": "Shop hiện đang cung cấp các mặt hàng như thịt, rau củ, hoa quả và một số thực phẩm khác. Nếu bạn muốn mua thịt, bạn có thể truy cập vào đây: <a href='http://127.0.0.1:5000/season?name=Thit' target='_blank'>Mua Thịt</a>."
+      },
+      {
+        "id": 9,
+        "category": "Seasonal Harvest",
+        "question": "Tôi muốn mua rau?",
+        "answer": "Shop hiện đang cung cấp các mặt hàng như thịt, rau củ, hoa quả và một số thực phẩm khác. Nếu bạn muốn mua rau, bạn có thể truy cập vào đây: <a href='http://127.0.0.1:5000/season?name=Rau' target='_blank'>Mua rau củ</a>."
+      },
+      {
+        "id": 10,
+        "category": "Seasonal Harvest",
+        "question": "Tôi muốn mua gạo?",
+        "answer": "Shop hiện đang cung cấp các mặt hàng như thịt, rau củ, hoa quả và một số thực phẩm khác. Nếu bạn muốn mua gạo, bạn có thể truy cập vào đây: <a href='http://127.0.0.1:5000/season?name=Khac ' target='_blank'>Mua gạo</a>."
+      },
+      { 
+        "id": 11,
+        "category": "Seasonal Fruits",
+        "question": "Mùa nào thu hoạch vải?",
+        "answer": "Vải thường được thu hoạch vào tháng 5 đến tháng 6, tức là vào mùa hè."
+      },
+      {
+        "id": 12,
+        "category": "Seasonal Fruits",
+        "question": "Mùa nào có nhiều cam quýt nhất?",
+        "answer": "Cam quýt thường có nhiều vào mùa đông, khoảng từ tháng 11 đến tháng 2."
+      },
+      {
+        "id": 13,
+        "category": "Seasonal Fruits",
+        "question": "Mùa nào ăn dưa hấu nhiều nhất?",
+        "answer": "Dưa hấu thường được ăn nhiều vào mùa hè vì thời tiết nóng và dưa hấu giúp giải nhiệt."
+      },
+      {
+        "id": 14,
+        "category": "Seasonal Fruits",
+        "question": "cho tôi biết thời tiết hà nội hôm nay",
+        "answer": "Dưa hấu thường được ăn nhiều vào mùa hè vì thời tiết nóng và dưa hấu giúp giải nhiệt."
+      }
+    ]
+  }
+  

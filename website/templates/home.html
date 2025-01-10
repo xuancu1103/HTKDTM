@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block body %}
+
+<div class="container text-center">
+    <div class="row" style="margin: 10px; opacity: 0.9;  filter: alpha(opacity=30); ">
+        
+      <div class="col " style="margin: 3px;">
+        <div class="list-group" id="right1">
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa-solid fa-carrot" aria-hidden="true"></i>
+                <span class="link-name">Rau củ tươi</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa-solid fa-apple-whole" aria-hidden="true"></i>
+                <span class="link-name">Trái cây</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa-solid fa-drumstick-bite"></i>           
+                <span class="link-name">Thịt tươi sống</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa-solid fa-fish"></i>
+                <span class="link-name">Hải sản</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa-solid fa-bowl-rice" aria-hidden="true"></i>
+                <span class="link-name">Gạo</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa fa-cubes" aria-hidden="true"></i>
+                <span class="link-name">Đồ đông lạnh</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa fa-child" aria-hidden="true"></i>
+                <span class="link-name">Thực phẩm chay</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <aria-hidden= class="fa-solid fa-jar" aria-hidden="true"></aria-hidden=>
+                <span class="link-name">Gia vị</span>
+            </a>
+            <a href="" class="list-group-item list-group-item-action">
+                <i class="fa-solid fa-bacon" aria-hidden="true"></i>
+                <span class="link-name">Đồ khô</span>
+            </a>
+        </div>
+      </div>
+
+
+      <div class="col-md-7" style="margin: 3px;opacity: 0.9;  filter: alpha(opacity=30);">
+        <img src="../static/images/thuc-pham-giau-dinh-duong.jpg" alt="" style="width: 600px; height: 365px; border-radius: 10px;">
+      </div>
+      <div class="col-md-2">
+        <div class="row" style="background-color: white; border-radius: 10px;">
+        
+            <div class="row" style="display: flex; margin-top: 5px;">
+                <div class="col">
+                    <img src="../static/images/help.png" alt="" style="width: 30px; height: 30px; margin-left: -30px;">
+                </div>
+                <div class="col">
+                    <h6 style="font-family:'Times New Roman', Times, serif; font-size: 12px; margin-left: -40px; font-weight: 600;">HELP CENTER</h6>
+                    <p style="font-size: small; color: gray; margin-left: -30px; margin-top: -10px;">Customer care</p>
+                </div>
+            </div>
+
+            <div class="row" style="display: flex; margin-top: 5px;">
+                <div class="col">
+                    <img src="../static/images/return.png" alt="" style="width: 30px; height: 30px; margin-left: -30px;">
+                </div>
+                <div class="col">
+                    <h6 style="font-family:'Times New Roman', Times, serif; font-size: 12px; margin-left: -40px; font-weight: 600;">EASY RETURN</h6>
+                    <p style="font-size: small; color: gray; margin-left: -30px; margin-top: -10px;">Quick Refund</p>
+                </div>
+            </div>
+
+            <div class="row" style="display: flex; margin-top: 5px;">
+                <div class="col">
+                    <img src="../static/images/payment.png" alt="" style="width: 30px; height: 30px; margin-left: -30px;">
+                </div>
+                <div class="col">
+                    <h6 style="font-family:'Times New Roman', Times, serif; font-size: 12px; margin-left: -40px; font-weight: 600;">SELL ON</h6>
+                    <p style="font-size: small; color: gray; margin-left: -30px; margin-top: -10px;">FBA Program</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 12px;">
+            <div class="col">
+                <img src="../static/images/compleat-healthy-food.gif" alt="" class="right2">
+            </div>
+        
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    <div class="row" style="margin: 8px;opacity: 0.9;  filter: alpha(opacity=30);">
+        <a href="/season?name=Thit" class="col" style="text-decoration: none; display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/thit.jpg" alt="" style="width: 30px; height: 30px; border-radius: 50%;">
+            <h6 style="margin: 4px">Thịt</h6>
+        </a>
+        <a href="/season?name=Rau" class="col" style="text-decoration: none; display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/rau.jpg" alt="" style="width: 30px; height: 30px; border-radius: 50%;">
+            <h6 style="margin: 4px">Rau củ</h6>
+        </a>
+        <a href="/season?name=Qua" class="col" style="text-decoration: none; display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/traicay.jpg" alt="" style="width: 30px; height: 30px; border-radius: 50%;">
+            <h6 style="margin: 4px">Hoa quả</h6>
+        </a>
+        <a href="/season?name=Khac" class="col" style="text-decoration: none; display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/gaonepcai.png" alt="" style="width: 30px; height: 30px; border-radius: 50%;">
+            <h6 style="margin: 4px">Khác</h6>
+        </a>
+
+    </div>
+</div>
+
+
+<div class="container text-center">
+    <div class="row" style="margin: 8px;background-color: #f8f9fa; opacity: 0.9;  filter: alpha(opacity=30);" id="column">
+
+        {% for item in items %}
+
+        <div class="col" style="background-color: white;">
+        
+            <img src="{{ item.product_picture }}" alt="" style="height: 202px; width: 180px; border-radius: 10px;">
+
+            <div class="row" style="margin-top: 5px;">
+                <h6 style="color: gray;">{{ item.product_name }}</h6>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+            
+                <div class="col">
+
+                    <h5 style="font-weight: 600; font-family: 'Times New Roman', Times, serif;">VND {{ item.current_price }}</h5>
+                    <strike><p style="color: gray;">VND {{ item.previous_price}}</p></strike>
+                </div>
+
+                <div class="col">
+                    <a href="/add-to-cart/{{ item.id }}">Thêm</a>
+                </div>
+            
+            </div>
+
+            <div class="row">
+                <p>còn lại: {{ item.in_stock }}</p>
+            </div>
+        </div>
+    
+        {% endfor %}
+
+    </div>
+</div>
+<div class = "container text-center" id="column"> 
+    {% if wearther %}
+    <div class="wearther-box" style="background-color: #f8f9fa; padding: 15px; border-radius: 10px; opacity: 0.9;  filter: alpha(opacity=30);" id="column">
+        >
+        <h5>Thời tiết tại {{ wearther.city }}, {{ wearther.country }}</h5>
+        <img src="http://openweathermap.org/img/wn/{{ wearther.icon }}@2x.png" alt="Weather Icon">
+        <p><strong>{{ wearther.description }}</strong></p>
+        <p>
+            <strong>Nhiệt độ:</strong> {{ wearther.temperature }}&#176;C<br>
+            <strong>Độ ẩm:</strong> {{ wearther.humidity }}%<br>
+            <strong>Tốc độ gió:</strong> {{ wearther.wind_speed }} m/s
+        </p>
+    </div>
+    {% else %}
+    <p>Không thể lấy dữ liệu thời tiết.</p> 
+    {% endif %}
+</div>
+
+{% endblock %}
