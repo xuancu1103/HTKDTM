@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block body %}
+    <h1 class="text-center mb-5 mt-5" style="color: white;">Biểu đồ trạng thái đơn hàng</h1>
+
+    <!-- Nhúng biểu đồ -->
+    <div class="container">
+        {{ graph_html | safe }}
+    </div>
+    <h1 class="text-center mb-5 mt-5" style="color: white;">Tổng giá theo trạng thái</h1>
+    <div class="container">
+        {{ graph_html1| safe}}
+    </div>
+{% endblock %}

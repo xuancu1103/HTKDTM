@@ -214,7 +214,7 @@ def show_cart():
     for item in cart:
         amount += item.product.current_price * item.quantity
 
-    return render_template('cart.html', cart=cart, amount=amount, total=amount+30000)
+    return render_template('cart.html', cart=cart, amount=amount, total=amount)
 
 
 @views.route('/pluscart')
@@ -307,12 +307,32 @@ def remove_cart():
 
         return jsonify(data)
 
+@views.route('/payment', methods=['GET', 'POST'])
+@login_required
+def payment():
+    cart = Cart.query.filter_by(customer_link=current_user.id).all()
+      # Kiểm tra xem thời tiết có mưa không
+    wearthe_infor = check_weather()
+    # Nếu có mưa, thay đổi giá sản phẩm (tăng lên 20%)
+    if wearthe_infor and wearthe_infor['condition']=='Rain':
+        for item in cart:
+            item.product.current_price = round(item.product.current_price * 1.2)  # Tăng giá lên 20%  # Tăng giá lên 20%
 
+    amount = 0
+    for item in cart:
+        amount += item.product.current_price * item.quantity
+
+    return render_template('payment.html', cart=cart, amount=amount, total=amount+30000)
 @views.route('/place-order', methods=['GET', 'POST'])
 @login_required
 def place_order():
     customer_cart = Cart.query.filter_by(customer_link=current_user.id).all()
-
+    address1 = "Đại học Thuỷ Lợi,Đống Đa, Hà Nội, Việt Nam"
+    ship_address = request.form.get("shipping-address")
+    print(ship_address)
+    distance_km = calculate_distance_between_addresses(address1, ship_address)
+    fee = calculate_shipping_fee(distance_km)
+    print(fee)
     if customer_cart:
         try:
             print(f"Cart: {customer_cart}")  # Debugging
@@ -332,7 +352,7 @@ def place_order():
             # Tạo dữ liệu thanh toán
             payment_data = PaymentData(
                 orderCode=random.randint(1000, 99999),
-                amount=int(total + 30000),  # Tổng tiền thanh toán
+                amount=int(total +fee),  # Tổng tiền thanh toán
                 description="Thanh toán đơn hàng",  # Mô tả đơn hàng
                 cancelUrl=f"{domain}/payment-failed",  # URL khi hủy thanh toán
                 returnUrl=f"{domain}/payment-success"  # URL khi thanh toán thành công
@@ -536,6 +556,83 @@ def chat():
 #     # Trả về phản hồi dưới dạng JSON
 #     return jsonify({"bot_reply": bot_reply or "Không có phản hồi nào từ bot."})
 
+@views.route("/total",methods=['GET', 'POST'] )
+def total():
+    cart = Cart.query.filter_by(customer_link=current_user.id).all()
+      # Kiểm tra xem thời tiết có mưa không
+    wearthe_infor = check_weather()
+    # Nếu có mưa, thay đổi giá sản phẩm (tăng lên 20%)
+    if wearthe_infor and wearthe_infor['condition']=='Rain':
+        for item in cart:
+            item.product.current_price = round(item.product.current_price * 1.2)  # Tăng giá lên 20%  # Tăng giá lên 20%
+
+    amount = 0
+    for item in cart:
+        amount += item.product.current_price * item.quantity
+    address1 = "Đại học Thuỷ Lợi,Đống Đa, Hà Nội, Việt Nam"
+    ship_address = request.form.get("shipping-address")
+    print(ship_address)
+    distance_km = calculate_distance_between_addresses(address1, ship_address)
+    fee = calculate_shipping_fee(distance_km)
+    print(f"Quãng đường từ {address1} đến {ship_address} là {distance_km} km và phí vận chuyển là {fee} VNĐ.")
+    return render_template('payment.html', cart=cart, amount=amount, total=amount+fee, ship_address = ship_address,fee=fee,distance_km=distance_km)
 
 
+def get_coordinates_from_address(address):
+    url = f"https://nominatim.openstreetmap.org/search?q={address}&format=json&addressdetails=1"
+    
+    headers = {
+        "User-Agent": "YourAppName/1.0 (soongxanhbgvn@gmail.com)",
+        "Referer": "http://localhost:5000"
+    }
+    
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        
+        if response.status_code == 200:
+            data = response.json()
+            if data:
+                lat = float(data[0]['lat'])
+                lon = float(data[0]['lon'])
+                return lat, lon
+            else:
+                raise Exception("Không tìm thấy địa chỉ.")
+        else:
+            raise Exception(f"Lỗi kết nối tới API, mã lỗi: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        raise Exception(f"Lỗi kết nối tới API: {e}")
+
+
+# Hàm tính quãng đường giữa hai địa chỉ chi tiết
+def calculate_distance_between_addresses(address1, address2):
+    lat1, lon1 = get_coordinates_from_address(address1)
+    lat2, lon2 = get_coordinates_from_address(address2)
+    
+    # Tiến hành tính quãng đường giữa hai điểm (sử dụng API OSRM hoặc công thức tính khoảng cách)
+    return calculate_distance(lat1, lon1, lat2, lon2)
+
+# Hàm tính quãng đường (ví dụ: sử dụng API OSRM hoặc tính theo công thức Haversine)
+def calculate_distance(lat1, lon1, lat2, lon2):
+    url = f"http://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}?overview=false"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        distance = data['routes'][0]['distance']  # Quãng đường tính bằng mét
+        return round(distance / 1000, 2)  # Đổi sang km và làm tròn
+    else:
+        raise Exception("Không thể tính quãng đường.")
+
+# Hàm tính phí vận chuyển
+def calculate_shipping_fee(distance_km):
+    base_fee = 10000  # Phí cơ bản (VNĐ)
+    fee_per_km = 5000  # Phí mỗi km (VNĐ)
+    return int(base_fee + (distance_km * fee_per_km))
+
+# Ví dụ sử dụng
+address1 = "Đại học Thuỷ Lợi,Đống Đa, Hà Nội, Việt Nam"
+address2 = "Ngọc Khánh,Ba Đình ,Hà Nội"
+distance_km = calculate_distance_between_addresses(address1, address2)
+fee = calculate_shipping_fee(distance_km)
+print(f"Quãng đường từ {address1} đến {address2} là {distance_km} km và phí vận chuyển là {fee} VNĐ.")
 

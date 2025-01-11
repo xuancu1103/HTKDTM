@@ -160,7 +160,7 @@
             </li>
           </ul>
 
-          <form class="d-flex" role="search" action="/search" style="margin-right: 170px;" method="POST">
+          <form class="d-flex" role="search" action="/search" style="margin-right: 50px;" method="POST">
             <input class="form-control me-2" name="search" type="search" placeholder="Tìm kiếm" aria-label="Tìm kiếm">
             <button class="btn" type="submit">Tìm kiếm</button>
           </form>
@@ -205,7 +205,7 @@
             
               {% if current_user.is_authenticated %}
               <li><a class="dropdown-item" href="/profile/{{ current_user.id }}">Thông tin cá nhân <i class="fa-solid fa-user"></i></a></li>
-              <li><a class="dropdown-item" href="/orders">Đặt hàng<i class="fa-solid fa-truck-fast"></i></a></li>
+              <li><a class="dropdown-item" href="/orders">Đơn hàng<i class="fa-solid fa-truck-fast"></i></a></li>
               <li><a class="dropdown-item" href="/logout">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a></li>
 
               {% else %}
@@ -360,7 +360,7 @@
 
   </script>
     <footer class="container-fluid  text-center p-2 mt-5" style="background-color: orange; color: white;">
-      <a href="https://github.com/xuancu1103/HTKDTM" style="color: white;">Green farm</a> | <span>
+      <a href="https://github.com/users/xuancu1103/projects/4" style="color: white;">Green farm</a> | <span>
         <i class="fa-sharp fa-regular fa-copyright"></i></span>
     </footer>
 

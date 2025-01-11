@@ -3,9 +3,14 @@ from flask_login import login_required, current_user
 from .forms import ShopItemsForm, OrderForm
 from werkzeug.utils import secure_filename
 from .models import Product, Order, Customer
+import plotly.express as px
+import plotly.io as pio
 from . import db
+import pandas as pd
+
 import os  
 import json  
+
 
 
 admin = Blueprint('admin', __name__)
@@ -155,9 +160,48 @@ def delete_item(item_id):
 def order_view():
     if current_user.id == 1:
         orders = Order.query.all()
-        return render_template('view_orders.html', orders=orders)
+        total_amount = sum(order.price * order.quantity for order in orders if order.status == 'Completed')
+        return render_template('view_orders.html', orders=orders, total_amount=total_amount)
     return render_template('404.html')
 
+@admin.route('/chart')
+@login_required
+def chart_view():
+    if current_user.id == 1:
+        status_counts = db.session.query(Order.status, db.func.count(Order.status).label('count'))\
+            .group_by(Order.status).all()
+
+        # Chuyển dữ liệu thành dạng dictionary
+        data = [{'status': status, 'count': count} for status, count in status_counts]
+
+        # Tạo biểu đồ cột với Plotly
+        df = pd.DataFrame(data)
+        fig = px.bar(df, x='status', y='count', title="Status Distribution", labels={'status': 'Status', 'count': 'Count'})
+
+        # Chuyển biểu đồ thành HTML
+        graph_html = pio.to_html(fig, full_html=False)
+
+        status_stats = db.session.query(
+            Order.status,
+            db.func.sum(Order.price).label('total_price')
+        ).group_by(Order.status).all()
+
+        # Chuyển dữ liệu thành dạng dictionary
+        data = [{'status': status, 'total_price': total_price} 
+                for status, total_price in status_stats]
+        print(data)
+        # Tạo biểu đồ cột với Plotly (bao gồm cả tổng giá trị)
+        df = pd.DataFrame(data)
+        fig = px.bar(df, 
+                     x='status', 
+                     y='total_price', 
+                     title="Total Price by Status", 
+                     labels={'status': 'Status', 'total_price': 'Total Price'})
+
+        # Chuyển biểu đồ thành HTML
+        graph_html1 = pio.to_html(fig, full_html=False)
+        # Trả về template với biểu đồ
+        return render_template('chart_view.html', graph_html=graph_html,graph_html1 = graph_html1)
 
 @admin.route('/update-order/<int:order_id>', methods=['GET', 'POST'])
 @login_required
@@ -190,6 +234,7 @@ def update_order(order_id):
 def display_customers():
     if current_user.id == 1:
         customers = Customer.query.all()
+        
         return render_template('customers.html', customers=customers)
     return render_template('404.html')
 
